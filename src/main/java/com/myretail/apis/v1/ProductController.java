@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,15 +19,10 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Product> index() {
-        List<Product> productList = new ArrayList<Product>();
-        productList.add(new Product(1L, "Mac Book Pro"));
-        productList.add(new Product(2L, "Microsoft Surface"));
-        return productList;
-
-//        return Arrays.asList(
-//            new Product(1L, "Mac Book Pro"),
-//            new Product(2L, "Microsoft Surface")
-//        );
+        return Arrays.asList(
+            new Product(1L, "Mac Book Pro"),
+            new Product(2L, "Microsoft Surface")
+        );
     }
 
 }
