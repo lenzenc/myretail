@@ -21,13 +21,15 @@ apply plugin: 'idea'
 apply plugin: 'war'
 apply plugin: 'com.bmuschko.tomcat'
 
-def tomcatDebugPort = 5005
 def tomcatHttpPort = 8080
 
 ext {
 	javaVersion = '1.8'
 	tomcatVersion = '7.0.59'
 	springVersion = '4.2.2.RELEASE'
+
+    servletApiVersion = '3.1.0'
+
 }
 
 sourceCompatibility = javaVersion
@@ -51,6 +53,13 @@ configurations {
 }
 
 dependencies {
+
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-webmvc:${springVersion}"
+    compile "org.springframework:spring-orm:${springVersion}"
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+
+    providedCompile "javax.servlet:javax.servlet-api:${servletApiVersion}"
 
 	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
