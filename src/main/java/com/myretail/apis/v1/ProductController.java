@@ -1,6 +1,8 @@
 package com.myretail.apis.v1;
 
+import com.myretail.daos.ProductDAO;
 import com.myretail.models.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,13 +18,17 @@ import java.util.List;
 @RequestMapping("/v1/products")
 public class ProductController {
 
+    @Autowired
+    public ProductDAO productDAO;
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Product> index() {
-        return Arrays.asList(
-            new Product(1L, "Mac Book Pro"),
-            new Product(2L, "Microsoft Surface")
-        );
+        return this.productDAO.findAll();
+//        return Arrays.asList(
+//            new Product(1L, "Mac Book Pro"),
+//            new Product(2L, "Microsoft Surface")
+//        );
     }
 
 }

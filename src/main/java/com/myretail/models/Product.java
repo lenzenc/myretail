@@ -1,20 +1,22 @@
 package com.myretail.models;
 
+import java.io.Serializable;
+
 /**
  * Product represents an item that can be made available for purchase within My Retail.
  */
-public class Product {
+public class Product implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
 
-    public Product(Long id, String name) {
+    public Product(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() { return this.id; }
-    public void setId(Long id) {
+    public Integer getId() { return this.id; }
+    public void setId(Integer id) {
         this.id = id;
     }
 
