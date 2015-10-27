@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.3'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+def tomcatDebugPort = 5005
+def tomcatHttpPort = 8080
+
+ext {
+	javaVersion = '1.8'
+	tomcatVersion = '7.0.59'
+	springVersion = '4.2.2.RELEASE'
+}
+
+sourceCompatibility = javaVersion
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+sourceSets {
+    integration {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    integrationCompile.extendsFrom testCompile
+    integrationRuntime.extendsFrom testRuntime
+}
+
+dependencies {
+
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+
+}
+
+tomcat {
+    httpPort = tomcatHttpPort
+}
+
+idea {
+    project {
+        jdkName = javaVersion
+        languageLevel = javaVersion
+    }
+
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+        testSourceDirs += file('src/integration/groovy')
+        scopes.TEST.plus += [configurations.integrationCompile]
+    }
+}
+
+task integration(type: Test) {
+    testClassesDir = sourceSets.integration.output.classesDir
+    classpath = sourceSets.integration.runtimeClasspath
+}
+
+task allTests(type: Test, dependsOn: ['integration', 'test']) {
+}
+
