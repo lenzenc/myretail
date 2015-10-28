@@ -3,6 +3,8 @@ package com.myretail.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Product represents an item that can be made available for purchase within My Retail.
  */
@@ -39,6 +41,12 @@ public class Product implements Serializable {
         Category category,
         BigDecimal price)
     {
+
+        checkNotNull(sku);
+        checkNotNull(name);
+        checkNotNull(category);
+        checkNotNull(price);
+
         this.sku = sku;
         this.name = name;
         this.category = category;

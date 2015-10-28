@@ -1,5 +1,7 @@
 package com.myretail.apis;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * ApiError is a simple object that can represent an API error back to the caller of an API.
  */
@@ -15,6 +17,10 @@ public class ApiError {
      * @param message the message associated to the error.
      */
     public ApiError(String code, String message) {
+
+        checkNotNull(code);
+        checkNotNull(message);
+
         this.code = code;
         this.message = message;
     }

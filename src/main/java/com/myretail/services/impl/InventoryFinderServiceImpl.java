@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * InventoryFinderServiceImpl is the default implementation of the InventoryFinderService interface.
  */
@@ -23,6 +25,9 @@ public class InventoryFinderServiceImpl implements InventoryFinderService {
      * @param productDAO an instance of a ProductDAO.
      */
     public InventoryFinderServiceImpl(ProductDAO productDAO) {
+
+        checkNotNull(productDAO);
+
         this.productDAO = productDAO;
     }
 
@@ -39,8 +44,12 @@ public class InventoryFinderServiceImpl implements InventoryFinderService {
      */
     @Override
     public List<ProductDetails> byCategory(ProductCategory productCategory) {
+
+        checkNotNull(productCategory);
+
         return this.productDAO.findAllByCategory(Product.Category.valueOf(productCategory.toString())).stream().map(p ->
             this.buildDetails(p)).collect(Collectors.toList());
+
     }
 
     /**
@@ -48,8 +57,12 @@ public class InventoryFinderServiceImpl implements InventoryFinderService {
      */
     @Override
     public Optional<ProductDetails> bySku(String sku) {
+
+        checkNotNull(sku);
+
         Product product = this.productDAO.findBySku(sku);
         return product != null ? Optional.of(this.buildDetails(product)) : Optional.empty();
+
     }
 
     private ProductDetails buildDetails(Product product) {
