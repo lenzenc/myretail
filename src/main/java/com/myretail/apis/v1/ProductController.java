@@ -63,5 +63,5 @@ public class ProductController {
     public ApiError handleIllegalArg(IllegalArgumentException e) {
         return new ApiError(HttpStatus.BAD_REQUEST.toString(), e.getMessage());
     }
-    
+
 }

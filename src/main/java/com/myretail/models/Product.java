@@ -10,7 +10,8 @@ public class Product implements Serializable {
 
     public  enum Category {
         BABY,
-        TOYS
+        TOYS,
+        FOOD
     }
 
     private Integer id;
