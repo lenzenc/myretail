@@ -3,11 +3,8 @@ package com.myretail.daos
 import com.myretail.config.DatabaseConfig
 import com.myretail.models.Product
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.cache.support.NullValue
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.AnnotationConfigContextLoader
-import org.springframework.test.context.transaction.TransactionConfiguration
-import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
 
 import static org.hamcrest.Matchers.*;

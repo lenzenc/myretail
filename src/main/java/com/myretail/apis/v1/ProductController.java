@@ -19,7 +19,21 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    public InventoryFinderService inventoryFinder;
+    private InventoryFinderService inventoryFinder;
+
+    /**
+     * Private constructor used by Spring as the required default constructor.
+     */
+    private ProductController() {}
+
+    /**
+     * Creates an instance of ProductController.
+     *
+     * @param inventoryFinder an instance of a InventoryFinderService implementation.
+     */
+    public ProductController(InventoryFinderService inventoryFinder) {
+        this.inventoryFinder = inventoryFinder;
+    }
 
     /**
      * RESTFul method for getting details about all Products within My Retail.
