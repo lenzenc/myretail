@@ -1,7 +1,9 @@
 package com.myretail.apis.v1;
 
-import com.myretail.daos.ProductDAO;
-import com.myretail.models.Product;
+import com.myretail.apis.ObjectNotFoundException;
+import com.myretail.services.InventoryFinderService;
+import com.myretail.services.ProductCategory;
+import com.myretail.services.ProductDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    public ProductDAO productDAO;
+    public InventoryFinderService inventoryFinder;
 
     /**
      * RESTFul method for getting details about all Products within My Retail.
@@ -24,19 +26,19 @@ public class ProductController {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Product> products(
+    public List<ProductDetails> products(
             @RequestParam(value = "category", required = false) String category)
     {
         return category != null ?
-            this.productDAO.findAllByCategory(Product.Category.valueOf(category.toUpperCase())) :
-            this.productDAO.findAll();
-
+            inventoryFinder.byCategory(ProductCategory.valueOf(category.toUpperCase())) :
+            inventoryFinder.all();
     }
 
     @RequestMapping(value = "/{sku}", method = RequestMethod.GET)
     @ResponseBody
-    public Product productBySku(@PathVariable String sku) {
-        return this.productDAO.findBySku(sku);
+    public ProductDetails productBySku(@PathVariable String sku) {
+        return inventoryFinder.bySku(sku).orElseThrow(() ->
+            new ObjectNotFoundException("Product does not exist for SKU: " + sku));
     }
 
 }

@@ -19,19 +19,30 @@ public class Product implements Serializable {
     private Category category;
     private BigDecimal price;
 
-//    public Product(
-//        Integer id,
-//        String sku,
-//        String name,
-//        Category category,
-//        BigDecimal price)
-//    {
-//        this.id = id;
-//        this.sku = sku;
-//        this.name = name;
-//        this.category = category;
-//        this.price = price;
-//    }
+    /**
+     * Empty constructor that is defined only for usage by MyBatis.
+     */
+    private Product() {}
+
+    /**
+     * Constructs a new instance of Product.
+     *
+     * @param sku the unique external identifier of a product.
+     * @param name the name and/or description of a product.
+     * @param category the category a product falls under.
+     * @param price the price of the product.
+     */
+    public Product(
+        String sku,
+        String name,
+        Category category,
+        BigDecimal price)
+    {
+        this.sku = sku;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
 
     public Integer getId() { return this.id; }
     public void setId(Integer id) {
