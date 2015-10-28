@@ -1,10 +1,12 @@
 package com.myretail.apis.v1;
 
+import com.myretail.apis.ApiError;
 import com.myretail.apis.ObjectNotFoundException;
 import com.myretail.services.InventoryFinderService;
 import com.myretail.services.ProductCategory;
 import com.myretail.services.ProductDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,4 +50,18 @@ public class ProductController {
             new ObjectNotFoundException("Product does not exist for SKU: " + sku));
     }
 
+    @ExceptionHandler(ObjectNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ApiError handleObjectNotFound(ObjectNotFoundException e) {
+        return new ApiError(HttpStatus.NOT_FOUND.toString(), e.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ApiError handleIllegalArg(IllegalArgumentException e) {
+        return new ApiError(HttpStatus.BAD_REQUEST.toString(), e.getMessage());
+    }
+    
 }
