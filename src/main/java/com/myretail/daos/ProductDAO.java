@@ -15,9 +15,27 @@ public interface ProductDAO {
      *
      * @param id the unique database identifier of a Product.
      *
-     * @return @return an {@link Optional} that wraps a persisted Product.
+     * @return @return a persisted Product or NULL if one is not found for the given id.
      */
-    Optional<Product> findById(Long id);
+    Product findById(Integer id);
+
+    /**
+     * Used to find a persisted Product given it's unique product sku number.
+     *
+     * @param sku the unique product sku number of a Product.
+     *
+     * @return a persisted Product or NULL if one is not found for the given sku.
+     */
+    Product findBySku(String sku);
+
+    /**
+     * Used to find all persisted Products given a product category value.
+     *
+     * @param category the product category for Products to find.
+     *
+     * @return a collection of Products or an EMPTY collection is non are found for given category.
+     */
+    List<Product> findAllByCategory(Product.Category category);
 
     /**
      * Used to retrieve all persisted Products from that database.

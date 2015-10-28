@@ -7,7 +7,43 @@
     <cache />
 
     <select id="findAll" resultType="Product">
-        SELECT ID, NAME FROM PRODUCTS
+        SELECT
+            ID,
+            SKU,
+            NAME,
+            CATEGORY,
+            PRICE
+        FROM PRODUCTS
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="Product">
+        SELECT
+        ID,
+        SKU,
+        NAME,
+        CATEGORY,
+        PRICE
+        FROM PRODUCTS WHERE ID = #{id}
+    </select>
+
+    <select id="findBySku" parameterType="String" resultType="Product">
+        SELECT
+        ID,
+        SKU,
+        NAME,
+        CATEGORY,
+        PRICE
+        FROM PRODUCTS WHERE SKU = #{sku}
+    </select>
+
+    <select id="findAllByCategory" parameterType="com.myretail.models.Product$Category" resultType="Product">
+        SELECT
+        ID,
+        SKU,
+        NAME,
+        CATEGORY,
+        PRICE
+        FROM PRODUCTS WHERE CATEGORY = #{category}
     </select>
 
 </mapper>
