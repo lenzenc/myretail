@@ -34,6 +34,13 @@ public class ProductController {
             inventoryFinder.all();
     }
 
+    /**
+     * RESTFul method for getting details about a Product for a given unique SKU value.
+     *
+     * @param sku the SKU value used to find a Product.
+     *
+     * @return details about a found Product or if no Product is found an ObjectNotFoundException is thrown.
+     */
     @RequestMapping(value = "/{sku}", method = RequestMethod.GET)
     @ResponseBody
     public ProductDetails productBySku(@PathVariable String sku) {
