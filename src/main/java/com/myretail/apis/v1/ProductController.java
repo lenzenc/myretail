@@ -5,7 +5,6 @@ import com.myretail.apis.ObjectNotFoundException;
 import com.myretail.services.InventoryFinderService;
 import com.myretail.services.ProductCategory;
 import com.myretail.services.ProductDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +13,11 @@ import java.util.List;
 /**
  * ProductController provides version 1 API functionality for the Product resource.
  */
-@RestController
+
 @RequestMapping("/v1/products")
 public class ProductController {
 
-    @Autowired
     private InventoryFinderService inventoryFinder;
-
-    /**
-     * Private constructor used by Spring as the required default constructor.
-     */
-    private ProductController() {}
 
     /**
      * Creates an instance of ProductController.

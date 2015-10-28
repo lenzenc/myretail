@@ -1,5 +1,6 @@
 package com.myretail.config;
 
+import com.myretail.apis.v1.ProductController;
 import com.myretail.daos.ProductDAO;
 import com.myretail.services.InventoryFinderService;
 import com.myretail.services.impl.InventoryFinderServiceImpl;
@@ -19,6 +20,11 @@ public class ProductConfig {
     @Bean
     public InventoryFinderService inventoryFinderService() {
         return new InventoryFinderServiceImpl(this.productDAO);
+    }
+
+    @Bean
+    public ProductController productController() {
+        return new ProductController(inventoryFinderService());
     }
 
 }
