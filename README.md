@@ -53,6 +53,8 @@ This command runs just the unit tests of this application.  Unit tests are consi
 ### Integration Tests
 This command runs just the integration tests of this application.  Integration tests are considered as tests that depend on external resources such as a DB or tests a combination of components together.
 
+    gradlew integration
+
 ### All Tests
 This command will run both unit and integration tests together and should be considered the main test command to run to ensure all tests are passing.
 
