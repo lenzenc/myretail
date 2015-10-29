@@ -46,4 +46,8 @@
         FROM PRODUCTS WHERE CATEGORY = #{category}
     </select>
 
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO PRODUCTS(SKU,NAME,CATEGORY,PRICE) VALUES (#{sku}, #{name}, #{category}, #{price})
+    </insert>
+
 </mapper>

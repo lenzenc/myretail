@@ -44,4 +44,14 @@ public interface ProductDAO {
      */
     List<Product> findAll();
 
+    /**
+     * Used to persist a new instance of Product.
+     *
+     * Note, that in this case Product must be mutable as the generated DB identifier will get set on Product after a
+     * successful insert.
+     *
+     * @param product the instance of Product to persist.
+     */
+    void insert(Product product);
+
 }

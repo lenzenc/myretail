@@ -80,4 +80,13 @@ class ProductDAOSpec extends Specification {
             that productList.collect{it.sku}, containsInAnyOrder("AEX143","IOL123","XYZ904")
     }
 
+    def "should be able to insert a new Product"() {
+        when:
+            productDAO.insert(new Product("INSERT_SKU", "Insert Testing", Product.Category.BABY, new BigDecimal("44.55")))
+            def product = productDAO.findBySku("INSERT_SKU")
+        then:
+            that product, is(not(nullValue()))
+            that product.id, is(not(nullValue()))
+    }
+
 }
