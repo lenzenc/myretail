@@ -30,7 +30,7 @@ Provides a list of all products.
 
     http://localhost:8080/myretail/v1/products
     
-#### GET: v1/products?category=toys
+#### GET: v1/products?category=?
 Finds all products for a given product category.
 
     http://localhost:8080/myretail/v1/products?category=toys
