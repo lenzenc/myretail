@@ -12,6 +12,14 @@ public class ProductDetails {
     private ProductCategory productCategory;
     private BigDecimal price;
 
+    /**
+     * Creates an instance of ProductDetails.
+     *
+     * @param sku a unique product identifier.
+     * @param name a name that describes a product.
+     * @param productCategory a category a product is associated to.
+     * @param price the price of the given product.
+     */
     public ProductDetails(
         String sku,
         String name,

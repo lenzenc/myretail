@@ -17,11 +17,17 @@ public class ProductConfig {
     @Autowired
     public ProductDAO productDAO;
 
+    /**
+     * @return an implementing instance of InventoryFinderService.
+     */
     @Bean
     public InventoryFinderService inventoryFinderService() {
         return new InventoryFinderServiceImpl(this.productDAO);
     }
 
+    /**
+     * @return an instance of a ProductController.
+     */
     @Bean
     public ProductController productController() {
         return new ProductController(inventoryFinderService());

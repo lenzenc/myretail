@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * ProductController provides version 1 API functionality for the Product resource.
  */
-
 @RequestMapping("/v1/products")
 public class ProductController {
 
@@ -60,14 +59,14 @@ public class ProductController {
     @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ApiError handleObjectNotFound(ObjectNotFoundException e) {
+    private ApiError handleObjectNotFound(ObjectNotFoundException e) {
         return new ApiError(HttpStatus.NOT_FOUND.toString(), e.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ApiError handleIllegalArg(IllegalArgumentException e) {
+    private ApiError handleIllegalArg(IllegalArgumentException e) {
         return new ApiError(HttpStatus.BAD_REQUEST.toString(), e.getMessage());
     }
 

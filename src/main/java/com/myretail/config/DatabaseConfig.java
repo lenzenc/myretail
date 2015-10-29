@@ -17,6 +17,14 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 @MapperScan("com.myretail.daos")
 public class DatabaseConfig {
 
+    /**
+     * Creates a MyBatis session factory that will get used from within the Spring context when managing connections
+     * to an underlying data store.
+     *
+     * @return an instance of MyBatis SessionFactory.
+     *
+     * @throws Exception is thrown if a SessionFactory can not be gottent from a session factory bean.
+     */
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -25,6 +33,9 @@ public class DatabaseConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
+    /**
+     * @return a JDBC DataSource to be used when getting connection for performing persistent functionality.
+     */
     @Bean
     public EmbeddedDatabase dataSource() {
         return new EmbeddedDatabaseBuilder().

@@ -19,6 +19,10 @@ import javax.servlet.ServletException;
  */
 public class AppInitializer implements WebApplicationInitializer {
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
